@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="{{url_for('static', filename='/images/logo.png')}}" type="image/icon type">
+    <title>Health History</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/css/layout.css">
+
+    <style>
+
+            #homePagebox{
+                margin-left:auto;
+                margin-right: auto;
+                width: 1000px;
+                height: 1400px;
+                background-color:white;
+                box-shadow:0 2px 2px 2px #888888;
+            }
+
+            #boxtext{
+                text-align: center;
+                padding: 40px 0px 0px 0px;
+                }
+            #boxtext img {
+            margin-top: 80px;
+            }
+            .wrapperbox{
+                margin: auto;
+                width: 80%;
+            }
+
+            table { 
+                width: 750px; 
+                border-collapse: collapse; 
+                margin:50px auto;
+                }
+
+            /* Zebra striping */
+            tr:nth-of-type(odd) { 
+                background: #eee; 
+                }
+
+            th { 
+                background: #3498db; 
+                color: white; 
+                font-weight: bold; 
+                }
+
+            td, th { 
+                padding: 10px; 
+                border: 1px solid #ccc; 
+                text-align: left; 
+                font-size: 18px;
+                }
+                
+            .button {
+            width: 100px;
+            height: 40px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 500;
+            color: #000;
+            background-color: #fff;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+            outline: none;
+            }
+
+            .button:hover {
+            background-color: #2EE59D;
+            box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+            color: #fff;
+            transform: translateY(-7px);
+            }
+    </style>
+
+</head>
+
+
+<body id="top">
+
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear">
+    <div class="fl_left"> 
+      <!-- ################################################################################################ -->
+      <ul class="nospace">
+        <li><i class="fas fa-phone rgtspace-5"></i> +91 89898 89898</li>
+        <li><i class="far fa-envelope rgtspace-5"></i> hh_admin@gmail.com</li>
+      </ul>
+      <!-- ################################################################################################ -->
+    </div>
+    <div class="fl_right"> 
+      <!-- ################################################################################################ -->
+      <ul class="nospace">
+        <li><a href="{{ url_for('index')}}"><i class="fas fa-home"></i></a></li>
+        <li><a href="#" title="Help Centre"><i class="far fa-life-ring"></i></a></li>
+        <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
+        <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li>
+        <li id="searchform">
+          <div>
+            <form action="#" method="post">
+              <fieldset>
+                <legend>Quick Search:</legend>
+                <input type="text" placeholder="Enter search term&hellip;">
+                <button type="submit"><i class="fas fa-search"></i></button>
+              </fieldset>
+            </form>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="wrapper row1">
+  <header id="header" class="hoc clear">
+    <img src="{{url_for('static', filename='/images/logo.png')}}" style="width:130px; height: 96px; margin-top: 0%; padding-left: 10px;"/>  
+    <div id="logo" class="fl_left"> 
+      <!-- ################################################################################################ -->
+          <h1><a href="{{ url_for('index') }}"> Health History </a></h1> 
+      <!-- ################################################################################################ -->
+    </div>
+    <nav id="mainav" class="fl_right"> 
+      <!-- ################################################################################################ -->
+      <ul class="clear">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a class="drop" href="#">Others</a>
+          <ul>
+            <li><a href="{{ url_for('adddetail') }}">Enter Client Details</a></li>
+            <li><a href="#">Emergency Contacts</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">API's</a></li>
+          </ul>
+        </li>
+        <li><a href="{{ url_for('showgraph') }}">Visualize Data</a></li>
+        <li><a href="{{ url_for('getqrcode') }}">QR Code</a></li>
+        <li class="active"><a href="{{ url_for('scanqr') }}">Medical Records</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>
+
+
+
+<div class="wrapper row2">
+  <section class="hoc container clear"> 
+    <!-- ################################################################################################ -->
+    <div class="sectiontitle">
+      <h6 class="heading">Medical Reports Retrival System</h6>
+      <p>All-in-one Online tool gives precise and timely information about Patient's Health</p>
+    </div>
+    
+    <div class = "wrapperbox">
+		<main>
+		
+			<div id = "homePagebox"> 
+				<div id="boxtext"> 
+					<h2> Lab Reports </h2>
+          <p> We maintain your medical reports in a standard manner in a secure cloud storage system.</p>
+          <br><br>
+          <h2 style="background: #3498db; color: white; font-weight: bold; padding: 3px 3px 3px 3px;"> LAB REPORT </h2>  
+          <embed src="{{url_for('static', filename='/displayrecords/file.pdf')}}" width="800px" height="1050px" />
+				</div>
+			</div>
+		</main>
+	</div>
+
+
+    <!-- ################################################################################################ -->
+  </section>
+</div>
+
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <p class="fl_left">Copyright &copy; 2021 - All Rights Reserved - <a href="#">Health History</a></p>
+    <p class="fl_right">Medical Record with <a target="_blank" href="" title="">QR System</a></p>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fas fa-chevron-circle-up"></i></a>
+
+<!-- JAVASCRIPTS -->
+<script type="text/javascript" src="{{ url_for('static', filename='/scripts/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='/scripts/jquery.backtotop.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='/scripts/jquery.mobilemenu.js') }}"></script>
+</body>
+</html>
