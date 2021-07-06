@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="{{url_for('static', filename='/images/logo.png')}}" type="image/icon type">
+    <title>Health History</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/css/layout.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+    <style>
+
+            #homePagebox{
+                margin-left:auto;
+                margin-right: auto;
+                width: 1000px;
+                height: 800px;
+                background-color:white;
+                box-shadow:0 2px 2px 2px #888888;
+            }
+
+            #boxtext{
+                text-align: center;
+                padding: 40px 0px 0px 0px;
+                }
+            #boxtext img {
+            margin-top: 80px;
+            }
+            .wrapperbox{
+                margin: auto;
+                width: 80%;
+            }
+            #fit{
+              text-align: center;
+              font-family: "Rubik", sans-serif;
+            }
+            #maintxt {
+            box-sizing: border-box;
+            color: rgb(35, 35, 35);
+            font-family: "Rubik", sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 41.6px;
+            text-align: center;
+            }
+            #subtxt {
+            box-sizing: border-box;
+            color: rgb(35, 35, 35);
+            font-family: "Rubik", sans-serif;
+            text-align: center;
+            }
+            .txt{
+              width: 800px;
+              text-align: center;
+            }
+            .card {
+              background: #fff;
+              box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            }
+    </style>
+
+</head>
+
+
+<body id="top">
+
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear">
+    <div class="fl_left"> 
+      <!-- ################################################################################################ -->
+      <ul class="nospace">
+        <li><i class="fas fa-phone rgtspace-5"></i> +91 89898 89898</li>
+        <li><i class="far fa-envelope rgtspace-5"></i> hh_admin@gmail.com</li>
+      </ul>
+      <!-- ################################################################################################ -->
+    </div>
+    <div class="fl_right"> 
+      <!-- ################################################################################################ -->
+      <ul class="nospace">
+        <li><a href="{{ url_for('index')}}"><i class="fas fa-home"></i></a></li>
+        <li><a href="#" title="Help Centre"><i class="far fa-life-ring"></i></a></li>
+        <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
+        <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li>
+        <li id="searchform">
+          <div>
+            <form action="#" method="post">
+              <fieldset>
+                <legend>Quick Search:</legend>
+                <input type="text" placeholder="Enter search term&hellip;">
+                <button type="submit"><i class="fas fa-search"></i></button>
+              </fieldset>
+            </form>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="wrapper row1">
+  <header id="header" class="hoc clear">
+    <img src="{{url_for('static', filename='/images/logo.png')}}" style="width:130px; height: 96px; margin-top: 0%; padding-left: 10px;"/>  
+    <div id="logo" class="fl_left"> 
+      <!-- ################################################################################################ -->
+          <h1><a href="{{ url_for('index') }}"> Health History </a></h1> 
+      <!-- ################################################################################################ -->
+    </div>
+    <nav id="mainav" class="fl_right"> 
+      <!-- ################################################################################################ -->
+      <ul class="clear">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a class="drop" href="#">Others</a>
+          <ul>
+            <li><a href="{{ url_for('adddetail') }}">Enter Client Details</a></li>
+            <li><a href="#">Emergency Contacts</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">API's</a></li>
+          </ul>
+        </li>
+        <li class="active"><a href="{{ url_for('showgraph') }}">Visualize Data</a></li>
+        <li><a href="{{ url_for('getqrcode') }}">QR Code</a></li>
+        <li><a href="{{ url_for('scanqr') }}">Medical Records</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>
+
+
+
+<div class="wrapper row2">
+    <h6 id="fit" style="padding: 30px 0px 0px 0px;" class="heading">Visual Story of Health Records</h6>
+    <p id="fit" style="padding: 1px 0px 5px 0px;"> Aesthetically pleasing and Visually Appealing Graphs bringing information to the viewers in a nutshell</p>
+    <div class="container-fluid">
+      <div class = "row">
+          
+          <div class="col-sm-4 py-2">
+              <!-- Card 1 -->
+              <div class="card h-100">
+              <!-- Card content -->
+                      <div class="card-header">
+                      <!-- Content -->
+                          <!-- Title -->
+                          <h4 id="maintxt" class="card-title mb-2 font-weight-bold">Disease Diagnosis</h4>
+                          <!-- Subtitle -->
+                          <h6 id="subtxt" class="card-subtitle mb-2 text-muted">Diagnosed Diseases over a period of time</h6>
+                      </div>
+                  <div class="card-body">
+                  <!-- Card image -->
+                  <div class="view overlay">
+                      <div class="chart" id="bubblegraph">
+                          <script>
+                          var graphs = {{plot1|safe}};
+                          Plotly.plot('bubblegraph',graphs,{});
+                          </script>
+                      </div>
+                  </div>
+                  </div>
+                  <div class="card-body">
+                  <!-- Card content -->
+                      <p id="fit" class="card-text">This plot shows <strong>diseases</strong> observed in the patients diagnosed over<strong> a period of time</strong></p>
+                  </div>
+              </div>
+              <!-- Card 1-->
+          </div>
+          <!--Grid column-->
+          <div class="col-sm-4 py-2">
+            <!-- Card 2-->
+            <div class="card h-100">
+            <!-- Card content -->
+                    <div class="card-header">
+                    <!-- Content -->
+                        <!-- Title -->
+                        <h4 id="maintxt" class="card-title font-weight-bold mb-2">Medical Records in 2020</h4>
+                        <!-- Subtitle -->
+                        <h6 id="subtxt" class="card-subtitle mb-2 text-muted">Diagnostic Records in the year 2020</h6>
+                    </div>
+                <!-- Card image -->
+                <div class="card-body">
+                <div class="view overlay">
+                    <div class="chart" id="colgraph">
+                        <script>
+                        var graphs = {{plot2 | safe}};
+                        Plotly.plot('colgraph',graphs,{});
+                        </script>
+                    </div>
+                </div>
+                <!-- Card content -->
+                <p id="fit" class="card-text">This plot shows <strong>medical records</strong> stored in secure storage <strong>across the year 2020 respective of months</strong></p>
+                </div>
+            </div>
+            <!-- Card 2-->
+        </div>
+        <!--Grid column-->
+        <div class="col-sm-4 py-2">
+          <!-- Card 3-->
+          <div class="card h-100">
+          <!-- Card content -->
+                  <div class="card-header">
+                  <!-- Content -->
+                      <!-- Title -->
+                      <h4 id="maintxt" class="card-title font-weight-bold mb-2">Gender Ratio</h4>
+                      <!-- Subtitle -->
+                      <h6 id="subtxt" class="card-subtitle mb-2 text-muted">Patients Gender Diversity</h6>
+                  </div>
+              <div class="card-body">
+              <!-- Card image -->
+              <div class="view overlay">
+                  <div class="chart" id="donutgraph">
+                      <script>
+                      var graphs = {{plot3 | safe}};
+                      Plotly.plot('donutgraph',graphs,{});
+                      </script>
+                  </div>  
+              </div>
+              </div>
+              <!-- Card content -->
+              <div class="card-body">
+                  <p id="fit" class="card-text">This plot shows <strong>diseases spread </strong>across gender <strong>over a period of time</strong></p>
+              </div>
+          </div>
+          <!-- Card 3-->
+      </div>
+    </div>
+      <div class = "row" style="padding-left: 280px !important;">
+      <!--Grid column-->
+      <div class="col-sm-4 py-2">
+        <!-- Card 4-->
+        <div class="card h-100" style="width: 636px !important; height: 667.15px !important;">
+        <!-- Card content -->
+                <div class="card-header">
+                <!-- Content -->
+                    <!-- Title -->
+                    <h4 id="maintxt" class="card-title font-weight-bold mb-2">Medical History</h4>
+                    <!-- Subtitle -->
+                    <h6 id="subtxt" class="card-subtitle mb-2 text-muted">Medical Records Scale across Year</h6>
+                </div>
+            <!-- Card image -->
+            <div class="card-body">
+            <div class="view overlay">
+                <div class="chart" id="oryelgraph">
+                    <script>
+                    var graphs = {{plot4 | safe}};
+                    Plotly.plot('oryelgraph',graphs,{});
+                    </script>
+                </div>
+            </div>
+            <!-- Card content -->
+            <p id="fit" class="card-text">This plot shows <strong>medical records</strong> accessed across years as indicating<strong> no.of patients diagnosed</strong></p>
+            </div>
+        </div>
+        <!-- Card 4-->
+    </div>
+    <!--Grid column-->
+    <div class="col-sm-4 py-2" style="padding-left: 150px !important;">
+      <!-- Card 5-->
+      <div class="card h-100" style="width: 636px !important; height: 667.15px !important;">
+      <!-- Card content -->
+              <div class="card-header">
+              <!-- Content -->
+                  <!-- Title -->
+                  <h4 id="maintxt" class="card-title font-weight-bold mb-2">Cases Observed in Months</h4>
+                  <!-- Subtitle -->
+                  <h6 id="subtxt" class="card-subtitle mb-2 text-muted">Growth case of Diseases over months</h6>
+              </div>
+          <div class="card-body">
+          <!-- Card image -->
+          <div class="view overlay">
+              <div class="chart" id="scattergraph">
+                  <script>
+                  var graphs = {{plot5 | safe}};
+                  Plotly.plot('scattergraph',graphs,{});
+                  </script>
+              </div>  
+          </div>
+          </div>
+          <!-- Card content -->
+          <div class="card-body">
+              <p id="fit" class="card-text">This plot shows <strong>particular year observation</strong> showing medical records details <strong>observed across gender respective of months</strong></p>
+          </div>
+      </div>
+      <!-- Card 5-->
+  </div>
+          </div>
+        </div>
+
+</div>
+
+<div class="wrapper row5" style="margin-top: 30px;">
+  <div id="copyright" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <p class="fl_left">Copyright &copy; 2021 - All Rights Reserved - <a href="#">Health History</a></p>
+    <p class="fl_right">Medical Record with <a target="_blank" href="" title="">QR System</a></p>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fas fa-chevron-circle-up"></i></a>
+
+<!-- JAVASCRIPTS -->
+<script type="text/javascript" src="{{ url_for('static', filename='/scripts/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='/scripts/jquery.backtotop.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='/scripts/jquery.mobilemenu.js') }}"></script>
+</body>
+</html>
