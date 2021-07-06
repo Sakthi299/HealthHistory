@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="{{url_for('static', filename='/images/logo.png')}}" type="image/icon type">
+    <title>Health History</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/css/layout.css">
+</head>
+
+
+<body id="top">
+
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear">
+    <div class="fl_left"> 
+      <!-- ################################################################################################ -->
+      <ul class="nospace">
+        <li><i class="fas fa-phone rgtspace-5"></i> +91 89898 89898</li>
+        <li><i class="far fa-envelope rgtspace-5"></i> hh_admin@gmail.com</li>
+      </ul>
+      <!-- ################################################################################################ -->
+    </div>
+    <div class="fl_right"> 
+      <!-- ################################################################################################ -->
+      <ul class="nospace">
+        <li><a href="{{ url_for('index') }}"><i class="fas fa-home"></i></a></li>
+        <li><a href="#" title="Help Centre"><i class="far fa-life-ring"></i></a></li>
+        <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
+        <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li>
+        <li id="searchform">
+          <div>
+            <form action="#" method="post">
+              <fieldset>
+                <legend>Quick Search:</legend>
+                <input type="text" placeholder="Enter search term&hellip;">
+                <button type="submit"><i class="fas fa-search"></i></button>
+              </fieldset>
+            </form>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="wrapper row1">
+  <header id="header" class="hoc clear">
+    <img src="{{url_for('static', filename='/images/logo.png')}}" style="width:130px; height: 96px; margin-top: 0%; padding-left: 10px;"/>  
+    <div id="logo" class="fl_left"> 
+      <!-- ################################################################################################ -->
+          <h1><a href="{{ url_for('index') }}"> Health History </a></h1> 
+      <!-- ################################################################################################ -->
+    </div>
+    <nav id="mainav" class="fl_right"> 
+      <!-- ################################################################################################ -->
+      <ul class="clear">
+        <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a class="drop" href="#">Others</a>
+          <ul>
+            <li><a href="{{ url_for('adddetail') }}">Enter Client Details</a></li>
+            <li><a href="#">Emergency Contacts</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">API's</a></li>
+          </ul>
+        </li>
+        <li><a href="{{ url_for('showgraph') }}">Visualize Data</a></li>
+        <li><a href="{{ url_for('getqrcode') }}">QR Code</a></li>
+        <li><a href="{{ url_for('scanqr') }}">Medical Records</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+
+    </nav>
+  </header>
+</div>
+
+
+<div class="wrapper bgded overlay gradient" style= "background-image: url({{ url_for('static', filename='/images/medical_back.png') }});">
+  <div id="pageintro" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <article>
+      <p>Client's health data in a chronological order</p>
+      <h3 class="heading"> QR-code Identity Access System </h3>
+      <p> Medical History - A key to Healthy Society ...... </p>
+      <footer>
+        <ul class="nospace inline pushright">
+          <li><a class="btn" href="{{ url_for('adminlogin') }}">Admin Access</a></li>
+          <li><a class="btn inverse" href="{{ url_for('showgraph') }}">Data Metrics</a></li>
+        </ul>
+      </footer>
+    </article>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+
+<div class="wrapper row2">
+  <section class="hoc container clear"> 
+    <!-- ################################################################################################ -->
+    <div class="sectiontitle">
+      <h6 class="heading"> All in one Destination for Patient's Medical History </h6><br>
+      <p>Guarantees lifetime access and a easy to use solution, help to improve work-efficiency in hospitals and to improve patient care. Feel free to Explore around our Services...</p>
+    </div>
+    <ul class="nospace group prices">
+      <li class="one_third">
+        <article><i class="fas fa-user-plus green"></i>
+          <h6 class="heading">User Details</h6>
+          <p>Add the client's personal information to keep track of his/her medical records throughout time with a Quick Response code</p>
+          <p></p>
+          <footer><a class="btn" href="{{ url_for('adddetail') }}">Save Details</a></footer>
+        </article>
+      </li>
+      <li class="one_third">
+        <article><i class=" fas fa-qrcode blue"></i>
+          <h6 class="heading">QR Access</h6>
+          <p>Get the corresponding Quick Response code of an individual to get an access to the medical history retrieval system</p>
+          <p></p>
+          <footer><a class="btn" href="{{ url_for('getqrcode') }}">Get QR Code</a></footer>
+        </article>
+      </li>
+      <li class="one_third">
+        <article><i class="fas fa-file red"></i>
+          <h6 class="heading">Fetch Records</h6>
+          <p>Medical History Retrieval System designed to serve every client with utmost care irrespective of the hospitals</p>
+          <p></p>
+          <footer><a class="btn" href="{{ url_for('scanqr') }}">Fetch Details</a></footer>
+        </article>
+      </li>
+    </ul>
+    <!-- ################################################################################################ -->
+  </section>
+</div>
+
+
+<div class="wrapper coloured">
+  <article class="hoc cta clear"> 
+    <!-- ################################################################################################ -->
+    <h6 class="three_quarter first">Look around to explore our authentic merchandise :)</h6>
+    <footer class="one_quarter"><a class="btn" href="#">Check this out</a></footer>
+    <!-- ################################################################################################ -->
+  </article>
+</div>
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row4">
+  <footer id="footer" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="one_quarter first">
+      <h6 class="heading">Health History - A QR Access System</h6>
+      <p>A Modern Approach in the Healthcare Sectors to intiate Patient Diagnosis Process effectively.</p>
+      <p class="btmspace-30">A QR-code based Medical History Retrieval System provides Instant Information in emergency conditions [<a href="#"><i class="fas fa-arrow-right"></i></a>]</p>
+      <ul class="faico clear">
+        <li><a class="faicon-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+        <li><a class="faicon-google-plus" href="#"><i class="fab fa-google-plus-g"></i></a></li>
+        <li><a class="faicon-linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
+        <li><a class="faicon-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+        <li><a class="faicon-vk" href="#"><i class="fab fa-vk"></i></a></li>
+      </ul>
+    </div>
+    <div class="one_quarter">
+      <h6 class="heading">Client Reviews</h6>
+      <ul class="nospace linklist">
+        <li>
+          <article>
+            <p class="nospace btmspace-10"><a href="#">Great help to Doctors to analyse past Medical Records of their patients in one place&hellip;</a></p>
+            <time class="block font-xs" datetime="2021-06-28">Friday, 28<sup>th</sup> June 2021</time>
+          </article>
+        </li>
+        <li>
+          <article>
+            <p class="nospace btmspace-10"><a href="#">Most intuitive and easily accessible website allowing Hospitals to Observe patients attentively&hellip;</a></p>
+            <time class="block font-xs" datetime="2021-07-03">Saturday, 3<sup>rd</sup> July 2021</time>
+          </article>
+        </li>
+      </ul>
+    </div>
+    <div class="one_quarter">
+      <h6 class="heading">HealthSector Blogs</h6>
+      <ul class="nospace linklist">
+        <li><a href="https://www.govhealthit.com/">GOVHEALTHIT</a></li>
+        <li><a href="https://www.healthpopuli.com/">HEALTHPOPULI</a></li>
+        <li><a href="https://33charts.com/">33Charts</a></li>
+        <li><a href="https://www.mohfw.gov.in/">MOHFW GOV</a></li>
+        <li><a href="https://numberneededtotreat.wordpress.com/">Number Needed To Treat</a></li>
+      </ul>
+    </div>
+    <div class="one_quarter">
+      <h6 class="heading">Subscription</h6>
+      <p class="nospace btmspace-15">To get in touch with our latest updates and features... Contact us Today...</p>
+      <form method="post" action="#">
+        <fieldset>
+          <legend>Newsletter:</legend>
+          <input class="btmspace-15" type="text" value="" placeholder="Name">
+          <input class="btmspace-15" type="text" value="" placeholder="Email">
+          <button type="submit" value="submit">Submit</button>
+        </fieldset>
+      </form>
+    </div>
+    <!-- ################################################################################################ -->
+  </footer>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <p class="fl_left">Copyright &copy; 2021 - All Rights Reserved - <a href="#">Health History</a></p>
+    <p class="fl_right">Medical Record with <a target="_blank" href="" title="">QR System</a></p>
+    <!-- ################################################################################################ -->
+  </div>
+</div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<a id="backtotop" href="#top"><i class="fas fa-chevron-circle-up"></i></a>
+
+<!-- JAVASCRIPTS -->
+<script type="text/javascript" src="{{ url_for('static', filename='/scripts/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='/scripts/jquery.backtotop.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='/scripts/jquery.mobilemenu.js') }}"></script>
+
+</body>
+</html>
